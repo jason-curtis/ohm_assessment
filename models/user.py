@@ -9,6 +9,27 @@ from .rel_user_multi import RelUserMulti
 from .rel_user_text import RelUserText
 
 
+def _is_below_tier(current_tier, tier):
+    ''' Determine whether the given user tier is below the threshold tier
+    '''
+    if current_tier == "Platinum":
+        return False
+
+    if current_tier == "Gold" and tier == "Platinum":
+        return True
+
+    if current_tier == "Silver" and tier in ("Gold", "Platinum"):
+        return True
+
+    if current_tier == "Bronze" and tier in ("Silver", "Gold", "Platinum"):
+        return True
+
+    if current_tier == "Carbon" and tier in ("Bronze", "Silver", "Gold", "Platinum"):
+        return True
+
+    return False
+
+
 class User(db.Model):
     __tablename__ = 'user'
     user_id = db.Column(db.Integer, primary_key=True)
@@ -165,24 +186,7 @@ class User(db.Model):
         return self.tier
 
     def is_below_tier(self, tier):
-        current_tier = self.get_tier()
-
-        if current_tier == "Platinum":
-            return False
-
-        if current_tier == "Gold" and tier == "Platinum":
-            return True
-
-        if current_tier == "Silver" and tier in ("Gold", "Platinum"):
-            return True
-
-        if current_tier == "Bronze" and tier in ("Silver", "Gold", "Platinum"):
-            return True
-
-        if current_tier == "Carbon" and tier in ("Bronze", "Silver", "Gold", "Platinum"):
-            return True
-
-        return False
+        return _is_below_tier(self.get_tier(), tier)
 
     # These are for Flask Login --------
     #
