@@ -194,7 +194,7 @@
     </div>
 
        <div id="header-tier" class="header-right-item">
-           <span class="header-status-level-1">Status</span><span class="header-status-level-2"> Level: </span><span class="tier-ball {{ current_user.get_tier().lower() }}"></span>
+           <span class="header-points-1">Points: </span><span class="header-points-2">{{ current_user.get_points_and_dollars().points }}</span>
     </div>
 
 </div>
