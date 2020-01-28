@@ -1,0 +1,56 @@
+{% extends "base_map.html" %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/css/webflow_base.css">
+
+    <style>
+        .tier-ball {
+            width: 1em;
+            height: 1em;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .tier-ball-cell {
+            text-align: center;
+        }
+
+    </style>
+
+{% endblock %}
+
+{% block body %}
+
+    <div id="container" class="container">
+        <div id="top-spacer">&nbsp;</div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="twothirds_div">
+                    <h1>Community</h1>
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th colspan="3">Welcome our newest users:</th>
+                            </tr>
+                        </thead>
+                        {%  for user in recently_enrolled_users %}
+                            <tr>
+                                <td class="tier-ball-cell">
+                                    <span class="tier-ball {{ user.tier.lower() }}"></span>
+                                </td>
+                                <td>
+                                    {{ user.display_name }}
+                                </td>
+                                <td>
+                                    {{ user.point_balance | int }} points
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

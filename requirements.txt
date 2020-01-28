@@ -31,6 +31,7 @@ pytest-assume==1.2
 pytest-cache==1.0
 pytest-cov==1.8.1
 pytest-mock==0.4.0
+pytest-watch==4.2.0
 python-dateutil==2.5.2
 python-editor==0.5
 python-intercom==2.1.1
