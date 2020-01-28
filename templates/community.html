@@ -47,6 +47,31 @@
                             </tr>
                         {% endfor %}
                     </table>
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th colspan="4">Welcome our newest users <em>with</em> phone numbers. Call them up!</th>
+                            </tr>
+                        </thead>
+                        {%  for user in recently_enrolled_users_with_phone %}
+                            <tr>
+                                <td class="tier-ball-cell">
+                                    <span class="tier-ball {{ user.tier.lower() }}"></span>
+                                </td>
+                                <td>
+                                    {{ user.display_name }}
+                                </td>
+                                <td>
+                                    {{ user.point_balance | int }} points
+                                </td>
+                                <td>
+                                    {% for phone_number in user.phone_numbers %}
+                                        {{ phone_number }}<br>
+                                    {%  endfor %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
                 </div>
             </div>
         </div>
