@@ -126,7 +126,7 @@
         color: #46c1d2;
     }
 
-    #header-name {
+    #header-email {
         float: left;
         padding-top: 8px;
         padding-right: 10px;
@@ -171,8 +171,8 @@
 
     <div id="header-dropdown-block">
         <div id="header-dropdown" class="header-right-item dropdown-toggle" data-toggle="dropdown">
-            <div id="header-name" class="display_short_name js-short-name">
-                {{ current_user.short_name() }}
+            <div id="header-email" class="display_short_name js-short-name">
+                {{ current_user.get_email() }}
             </div>
             <div id="header-dropdown-icon-block">
                 <img id="header-dropdown-icon" src="/images/dropdown_triangle.png"/>
