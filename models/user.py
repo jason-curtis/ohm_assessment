@@ -9,25 +9,22 @@ from .rel_user_multi import RelUserMulti
 from .rel_user_text import RelUserText
 
 
-def _is_below_tier(current_tier, tier):
+TIER_ORDER = [
+    "Carbon",
+    "Bronze",
+    "Silver",
+    "Gold",
+    "Platinum"
+]
+_tier_order_lookup = {
+    tier: number
+    for number, tier in enumerate(TIER_ORDER)
+}
+
+def _is_below_tier(user_tier, threshold_tier):
     ''' Determine whether the given user tier is below the threshold tier
     '''
-    if current_tier == "Platinum":
-        return False
-
-    if current_tier == "Gold" and tier == "Platinum":
-        return True
-
-    if current_tier == "Silver" and tier in ("Gold", "Platinum"):
-        return True
-
-    if current_tier == "Bronze" and tier in ("Silver", "Gold", "Platinum"):
-        return True
-
-    if current_tier == "Carbon" and tier in ("Bronze", "Silver", "Gold", "Platinum"):
-        return True
-
-    return False
+    return _tier_order_lookup[user_tier] < _tier_order_lookup[threshold_tier]
 
 
 class User(db.Model):
